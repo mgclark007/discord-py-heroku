@@ -44,7 +44,7 @@ async def on_ready():
 @bot.command(name='setsword')
 async def dosomething(ctx, data):
     await ctx.send("command received")
-    await writesingle("equipped_sword", data)
+    await writesingle(ctx, "equipped_sword", data)
 
 @bot.command()
 async def ping(ctx):
