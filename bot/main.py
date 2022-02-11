@@ -10,7 +10,7 @@ async def on_ready():
 
 @bot.command(name='go')
 async def dosomething(ctx):
-    await message.channel.send('bot response')
+    await ctx.send('bot response')
 
 @bot.command()
 async def ping(ctx):
