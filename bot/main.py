@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # database read/write
-async def writesingle(field, data):
+async def writesingle(ctx, field, data):
     # initialize
     db = sqlite3.connect("main.sqlite")
     cursor = db.cursor()
@@ -42,9 +42,9 @@ async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
 
 @bot.command(name='setsword')
-async def dosomething(ctx):
+async def dosomething(ctx, data):
     await ctx.send("command received")
-    await writesingle("equipped_sword", "Diamond Sword")
+    await writesingle("equipped_sword", data)
 
 @bot.command()
 async def ping(ctx):
