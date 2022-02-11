@@ -4,7 +4,6 @@ from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
-GUILD = os.getenv
 
 @bot.event
 async def on_ready():
