@@ -1,10 +1,10 @@
 import os
+import discord
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
-
-# PLEASE FUCKING WORK GOD DAMN IT
+GUILD = os.getenv
 
 @bot.event
 async def on_ready():
@@ -16,3 +16,13 @@ async def ping(ctx):
 
 if __name__ == "__main__":
     bot.run(TOKEN)
+
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if message.content == 'm':
+        response = 'gooo'
+        await message.channel.send(response)
