@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # database read/write
-def writesingle(field, data):
+async def writesingle(field, data):
     # initialize
     db = sqlite3.connect("main.sqlite")
     cursor = db.cursor()
