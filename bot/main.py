@@ -4,6 +4,8 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
+# PLEASE FUCKING WORK GOD DAMN IT
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
