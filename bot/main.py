@@ -42,7 +42,7 @@ async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
 
 @bot.command(name='setsword')
-async def dosomething(ctx, data):
+async def dosomething(ctx):
     await ctx.send("command received")
     await writesingle("equipped_sword", "Diamond Sword")
 
