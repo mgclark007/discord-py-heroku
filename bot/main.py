@@ -41,6 +41,17 @@ async def writesingle(ctx, field, data):
 async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
 
+    # create database if not exist
+    db = sqlite3.connect('main.sqlite')
+    cursor = db.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS main(
+            guild_id TEXT,
+            user_id TEXT,
+            equipped_sword TEXT
+        )
+    ''')
+
 @bot.command(name='setsword')
 async def dosomething(ctx, data):
     await ctx.send("command received")
