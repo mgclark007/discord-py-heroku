@@ -8,14 +8,6 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
 
-@bot.event
-async def on_message(message):
-    if message.content == 'm':
-        print("idk if this will even print")
-        response = 'gooo'
-        await message.channel.send(response)
-    await bot.process_commands(message)
-
 @bot.command(name='go')
 async def dosomething(ctx):
     await message.channel.send('bot response')
