@@ -52,7 +52,7 @@ async def on_ready():
         )
     ''')
 
-@bot.command("help")
+@bot.command("setsword")
 async def dosomething(ctx, data):
     await ctx.send("command received")
     #await writesingle(ctx, "equipped_sword", data)
@@ -60,6 +60,11 @@ async def dosomething(ctx, data):
 @bot.command()
 async def ping(ctx):
     await ctx.send("pong")
+
+@bot.event
+async def on_message(message):
+    if "$" in message.content:
+        await message.channel.send(":matthew:", reference=message)
 
 if __name__ == "__main__":
     bot.run(TOKEN)
