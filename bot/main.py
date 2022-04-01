@@ -1,6 +1,8 @@
 import os
 from discord.ext import commands
 
+import random
+
 # database
 import sqlite3
 
@@ -61,10 +63,12 @@ async def dosomething(ctx, data):
 async def ping(ctx):
     await ctx.send("pong")
 
+emotes = ["<:matthew:688543994732740613>", "<:kimkim13:892250398746877952>", "<:kimkim69:930313263621754960>", "<:jeangasm:872378627348631613>", "<:chris:925276627246657596>", "<:robert:930312594059845703>", "<:justindamn:876740972048953364>", "<:dead:871578603417137182>"]
+
 @bot.event
 async def on_message(message):
     if "$" in message.content:
-        await message.channel.send(":matthew:", reference=message)
+        await message.channel.send(random.choice(emotes))
 
 if __name__ == "__main__":
     bot.run(TOKEN)
