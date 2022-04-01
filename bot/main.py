@@ -4,7 +4,7 @@ from discord.ext import commands
 # database
 import sqlite3
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="$")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # database read/write
@@ -52,10 +52,10 @@ async def on_ready():
         )
     ''')
 
-@bot.command(name='setsword')
+@bot.command("help")
 async def dosomething(ctx, data):
     await ctx.send("command received")
-    await writesingle(ctx, "equipped_sword", data)
+    #await writesingle(ctx, "equipped_sword", data)
 
 @bot.command()
 async def ping(ctx):
