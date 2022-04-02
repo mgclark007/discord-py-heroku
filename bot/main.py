@@ -3,73 +3,46 @@ from discord.ext import commands
 
 import random
 
-# database
-import sqlite3
+import asyncpg
+from asyncpg.pool import create_pool
 
-bot = commands.Bot(command_prefix="$")
+client = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-# database read/write
-async def writesingle(ctx, field, data):
-    # initialize
-    db = sqlite3.connect("main.sqlite")
-    cursor = db.cursor()
 
-    # find field
-    cursor.execute(f"SELECT {field} FROM main WHERE guild_id = {ctx.guild.id}")
-    result = cursor.fetchone()
+async def create_db_pool():
+    client.pg_con = await asyncpg.create_pool(database="economy",user="postgres",password="ass_app")
 
-    # Prepare variables and sql
-    if result is None:
-        sql = (f"INSERT INTO main(guild_id, {field}) VALUES (?,?)")
-        val = (ctx.guild.id, data)
-        await ctx.send(f"Field {field} has been set to {data}")
-    elif result is not None:
-        sql = (f"UPDATE main SET {field} = ? WHERE guild_id = ?")
-        val = (data, ctx.guild.id)
-        await ctx.send(f"Field {field} has been updated to {data}")
 
-    # execute command
-    cursor.execute(sql, val)
-
-    # save
-    db.commit()
-
-    # close
-    cursor.close()
-    db.close()
-
-@bot.event
+@client.event
 async def on_ready():
-    print(f"Logged in as {bot.user.name}({bot.user.id})")
+    print(f"Logged in as {client.user.name}({client.user.id})")
 
-    # create database if not exist
-    db = sqlite3.connect('main.sqlite')
-    cursor = db.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS main(
-            guild_id TEXT,
-            user_id TEXT,
-            equipped_sword TEXT
-        )
-    ''')
-
-@bot.command("setsword")
+@client.command("setsword")
 async def dosomething(ctx, data):
     await ctx.send("command received")
     #await writesingle(ctx, "equipped_sword", data)
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send("pong")
+# @client.command()
+# async def ping(ctx):
+#     await ctx.send("pong")
 
+
+
+# april fools code
 emotes = ["<:matthew:688543994732740613>", "<:kimkim13:892250398746877952>", "<:kimkim69:930313263621754960>", "<:jeangasm:872378627348631613>", "<:chris:925276627246657596>", "<:robert:930312594059845703>", "<:justindamn:876740972048953364>", "<:dead:871578603417137182>"]
 
-@bot.event
+@client.event
 async def on_message(message):
     if "$" in message.content:
         await message.channel.send(random.choice(emotes))
 
 if __name__ == "__main__":
-    bot.run(TOKEN)
+    for files in os.listdir('./cogs'):
+        if files.endswith('.py'):
+            client.load_extension(f"cogs.{files[:-3]}")
+
+
+    client.loop.run_until_complete(create_db_pool())
+    client.run(TOKEN)
 
