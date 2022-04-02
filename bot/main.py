@@ -3,7 +3,7 @@ from discord.ext import commands
 
 import random
 
-import asyncpg
+#import asyncpg
 from asyncpg.pool import create_pool
 
 client = commands.Bot(command_prefix="!")
