@@ -8,9 +8,6 @@ class Economy(commands.Cog):
 	def __init__(self,client):
 		self.client = client
 
-	def setup(client):
-		client.add_cog(Economy(client))
-
 
 	@commands.Cog.listener()
 	async def on_ready(self):
@@ -43,3 +40,6 @@ class Economy(commands.Cog):
 		await self.check(id)
 		await self.add(id,25)
 		tops = await self.top()
+
+def setup(client):
+	client.add_cog(Economy(client))
