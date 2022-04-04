@@ -10,9 +10,12 @@ from asyncpg.pool import create_pool
 client = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
 
 async def create_db_pool():
-    client.pg_con = await asyncpg.create_pool(database="economy",user="postgres",password="ass_app")
+    client.pg_con = await asyncpg.create_pool(DATABASE_URL)
+    #client.pg_con = await asyncpg.create_pool(database="economy",user="postgres",password="ass_app")
 
 
 @client.event
