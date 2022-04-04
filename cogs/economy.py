@@ -40,6 +40,7 @@ class Economy(commands.Cog):
 		await self.check(id)
 		await self.add(id,25)
 		tops = await self.top()
+		await ctx.send(self.balance(id))
 
 def setup(client):
 	client.add_cog(Economy(client))
