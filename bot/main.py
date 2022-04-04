@@ -27,9 +27,9 @@ async def dosomething(ctx, data):
     await ctx.send("command received")
     #await writesingle(ctx, "equipped_sword", data)
 
-# @client.command()
-# async def ping(ctx):
-#     await ctx.send("pong")
+@client.command()
+async def ping(ctx):
+    await ctx.send("pong")
 
 
 
