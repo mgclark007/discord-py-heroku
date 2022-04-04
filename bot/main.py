@@ -29,6 +29,7 @@ async def dosomething(ctx, data):
 
 @client.command()
 async def ping(ctx):
+    print("ponging")
     await ctx.send("pong")
 
 
