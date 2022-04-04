@@ -28,7 +28,7 @@ class Economy(commands.Cog):
 
 	async def balance(self,id):
 		bal = await self.client.pg_con.fetchrow("SELECT money FROM economy WHERE userid = $1",id)
-		return bal[0]
+		return bal
 
 	async def top(self):
 		tops = await self.client.pg_con.fetchrow("SELECT * FROM economy ORDER BY money DESC NULLS LAST")
@@ -40,7 +40,9 @@ class Economy(commands.Cog):
 		await self.check(id)
 		await self.add(id,25)
 		tops = await self.top()
-		await ctx.send(self.balance(id))
+
+		bal = await self.balance(id)
+		await ctx.send(bal)
 
 def setup(client):
 	client.add_cog(Economy(client))
