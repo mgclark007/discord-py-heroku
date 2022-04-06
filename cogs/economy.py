@@ -4,6 +4,9 @@ from discord.ext import commands
 from discord.ext.commands.core import command
 from discord.utils import get
 
+# form. challenger : returner. Can only have one challenge per challenger active.
+challenges = {}
+
 class Economy(commands.Cog):
 	def __init__(self,client):
 		self.client = client
@@ -48,9 +51,6 @@ class Economy(commands.Cog):
 		bal = await self.balance(id)
 		await ctx.send(bal)
 
-
-	# form. challenger : returner. Can only have one challenge per challenger active.
-	challenges = {}
 
 	# test command: challenge another user to a fight
 	@commands.command()
