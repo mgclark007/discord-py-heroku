@@ -48,15 +48,19 @@ class Economy(commands.Cog):
 		bal = await self.balance(id)
 		await ctx.send(bal)
 
+
+	# form. challenger : returner. Can only have one challenge per challenger active.
+	challenges = {}
+
 	# test command: challenge another user to a fight
 	@commands.command()
 	async def challenge(self,ctx,arg):
 		# sender id
 		id = ctx.author.id
-		await ctx.send("challege inputted")
 
-		returner = await self.accept(arg)
-		print("is there error")
+		challenges[id] = arg
+
+		await ctx.send(f"challege inputted, arg: {arg}")
 
 
 	# test command: accept challenge
@@ -64,8 +68,10 @@ class Economy(commands.Cog):
 	async def accept(self,ctx):
 		# sender id
 		id = ctx.author.id
-		await ctx.send("acceptance inputted")
-		return id
+
+		# check if challenge exists for this user
+		if id in challenges.values():
+			await ctx.send(f"acceptance inputted, challenges: {challenges}")
 
 def setup(client):
 	client.add_cog(Economy(client))
