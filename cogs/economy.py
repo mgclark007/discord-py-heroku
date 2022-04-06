@@ -54,13 +54,13 @@ class Economy(commands.Cog):
 
 	# test command: challenge another user to a fight
 	@commands.command()
-	async def challenge(self,ctx,arg):
+	async def challenge(self,ctx,arg: discord.Member):
 		global challenges
 
 		# sender id
 		id = ctx.author.id
 
-		challenges[id] = arg
+		challenges[id] = arg.id
 
 		await ctx.send(f"challege inputted, arg: {arg}")
 
