@@ -55,6 +55,8 @@ class Economy(commands.Cog):
 	# test command: challenge another user to a fight
 	@commands.command()
 	async def challenge(self,ctx,arg):
+		global challenges
+
 		# sender id
 		id = ctx.author.id
 
@@ -66,6 +68,8 @@ class Economy(commands.Cog):
 	# test command: accept challenge
 	@commands.command()
 	async def accept(self,ctx):
+		global challenges
+
 		# sender id
 		id = ctx.author.id
 
