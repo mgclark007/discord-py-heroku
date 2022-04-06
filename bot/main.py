@@ -22,17 +22,16 @@ async def create_db_pool():
 async def on_ready():
     print(f"Logged in as {client.user.name}({client.user.id})")
 
-@client.command("setsword")
-async def dosomething(ctx, data):
-    await ctx.send("command received")
-    #await writesingle(ctx, "equipped_sword", data)
+# @client.command("setsword")
+# async def dosomething(ctx, data):
+#     await ctx.send("command received")
+#     #await writesingle(ctx, "equipped_sword", data)
 
+# test function
 @client.command(name="ping")
 async def ping(ctx):
     print("ponging")
     await ctx.send("pong")
-
-
 
 # april fools code
 emotes = ["<:matthew:688543994732740613>", "<:kimkim13:892250398746877952>", "<:kimkim69:930313263621754960>", "<:jeangasm:872378627348631613>", "<:chris:925276627246657596>", "<:robert:930312594059845703>", "<:justindamn:876740972048953364>", "<:dead:871578603417137182>"]

@@ -8,6 +8,9 @@ class Economy(commands.Cog):
 	def __init__(self,client):
 		self.client = client
 
+# maybe need more tables. need tables for weapon, for bow, for treasure, etc yada
+# don't shove everything into the same table
+# or maybe use text arrays
 
 	@commands.Cog.listener()
 	async def on_ready(self):
@@ -34,6 +37,7 @@ class Economy(commands.Cog):
 		tops = await self.client.pg_con.fetchrow("SELECT * FROM economy ORDER BY money DESC NULLS LAST")
 		return tops
 
+	# test command: trial
 	@commands.command()
 	async def trial(self,ctx):
 		id = ctx.author.id
@@ -43,6 +47,25 @@ class Economy(commands.Cog):
 
 		bal = await self.balance(id)
 		await ctx.send(bal)
+
+	# test command: challenge another user to a fight
+	@commands.command()
+	async def challenge(self,ctx,arg):
+		# sender id
+		id = ctx.author.id
+		await ctx.send("challege inputted")
+
+		returner = await self.accept(arg)
+		print("is there error")
+
+
+	# test command: accept challenge
+	@commands.command()
+	async def accept(self,ctx):
+		# sender id
+		id = ctx.author.id
+		await ctx.send("acceptance inputted")
+		return id
 
 def setup(client):
 	client.add_cog(Economy(client))
