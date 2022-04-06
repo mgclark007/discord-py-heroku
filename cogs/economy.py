@@ -73,6 +73,8 @@ class Economy(commands.Cog):
 		# sender id
 		id = ctx.author.id
 
+		await ctx.send(f"acceptance inputted, challenges: {challenges}")
+
 		# check if challenge exists for this user
 		if id in challenges.values():
 			await ctx.send(f"acceptance inputted, challenges: {challenges}")
